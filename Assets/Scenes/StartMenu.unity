@@ -921,9 +921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackScreenImage: {fileID: 780280157}
-  winScreen: {fileID: 0}
-  countText: {fileID: 0}
-  winCount: 0
 --- !u!4 &1154747330
 Transform:
   m_ObjectHideFlags: 0
