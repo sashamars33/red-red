@@ -36,7 +36,7 @@ public class CollectItem : MonoBehaviour
             if (prefabID != null)
             {
                 countText.text = countText.text  + prefabID.ID + "\n";
-                // CollectionManager.Instance.Add(prefabID.ID);
+                QuestManager.Instance.CollectItem(prefabID.ID);
             }
             
             if(collectSound != null)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,23 +7,86 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance;
 
     private void Awake()
+{
+    if (Instance == null)
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
-
-    private Dictionary<string, int> collectedItems = new Dictionary<string, int>();
-
-    public void AddItem(string questID)
+    else
     {
-        if (!collectedItems.ContainsKey(questID))
-            collectedItems[questID] = 0;
-
-        collectedItems[questID]++;
-    }
-
-    public bool HasRequiredItems(string questID, int required)
-    {
-        return collectedItems.ContainsKey(questID) &&
-               collectedItems[questID] >= required;
+        Destroy(gameObject);
     }
 }
+
+    // Quest definition
+    [System.Serializable]
+    public class QuestPhase
+    {
+        public string phaseName;
+        public List<string> requiredItems; // list of item IDs for this phase
+    }
+
+    public List<QuestPhase> questPhases = new List<QuestPhase>();
+
+    private int currentPhaseIndex = 0;
+
+    // Track collected items for the current phase
+    private List<string> collectedItems = new List<string>();
+
+    // Called when player collects an item
+    public void CollectItem(string itemID)
+    {
+        // Only add if it's required in the current phase
+        if (CurrentPhase().requiredItems.Contains(itemID) && !collectedItems.Contains(itemID))
+        {
+            collectedItems.Add(itemID);
+            Debug.Log(collectedItems);
+            Debug.Log($"Collected {itemID} for phase {CurrentPhase().phaseName}");
+        }
+    }
+
+    // Check if the player has collected all items for the current phase
+    public bool HasCollectedAllItems()
+    {
+        foreach (string itemID in CurrentPhase().requiredItems)
+        {
+            Debug.Log(itemID);
+            if (!collectedItems.Contains(itemID)) return false;
+        }
+        return true;
+    }
+
+    // Call this when player returns to NPC
+    public void CompletePhase()
+    {
+        if (HasCollectedAllItems())
+        {
+            Debug.Log($"Phase {CurrentPhase().phaseName} completed!");
+            collectedItems.Clear(); // reset for next phase
+            currentPhaseIndex++;
+
+            if (currentPhaseIndex >= questPhases.Count)
+            {
+                Debug.Log("Quest completed!");
+            }
+            else
+            {
+                Debug.Log($"Next phase started: {CurrentPhase().phaseName}");
+            }
+        }
+        else
+        {
+            Debug.Log("You haven't collected all required items yet!");
+        }
+    }
+
+    public QuestPhase CurrentPhase()
+    {
+        if (currentPhaseIndex < questPhases.Count)
+            return questPhases[currentPhaseIndex];
+        return null;
+    }
+}
+
+

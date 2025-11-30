@@ -713,6 +713,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: GameScene
   triggeringTag: Player
+--- !u!1 &1227295096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a4405f607f5f61f4f9ae57dd1ee650ef, type: 3}
+  m_PrefabInstance: {fileID: 1244699152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1227295097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227295096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3767c8ff7d6180438dbd199245c434c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Gammy
+--- !u!135 &1227295098
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227295096}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.189886
+  m_Center: {x: -0.0026262228, y: -0.47755122, z: -1.1473582}
 --- !u!1001 &1228723814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,7 +926,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4405f607f5f61f4f9ae57dd1ee650ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1227295098}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4405f607f5f61f4f9ae57dd1ee650ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1227295097}
   m_SourcePrefab: {fileID: 100100000, guid: a4405f607f5f61f4f9ae57dd1ee650ef, type: 3}
 --- !u!1 &1266216896 stripped
 GameObject:
