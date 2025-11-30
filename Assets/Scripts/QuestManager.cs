@@ -1,17 +1,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
+    public Light sunLight;                 // Assign your Directional Light
+    public List<Vector3> sunRotations;     // One rotation per phase
+    public List<float> sunIntensities;
 
-    private void Awake()
+private void Awake()
 {
     if (Instance == null)
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);  
     }
     else
     {
@@ -66,6 +70,8 @@ public class QuestManager : MonoBehaviour
             collectedItems.Clear(); // reset for next phase
             currentPhaseIndex++;
 
+            ApplySunSettings();
+
             if (currentPhaseIndex >= questPhases.Count)
             {
                 Debug.Log("Quest completed!");
@@ -87,6 +93,43 @@ public class QuestManager : MonoBehaviour
             return questPhases[currentPhaseIndex];
         return null;
     }
+    private void ApplySunSettings()
+{
+    if (sunLight == null) return;
+
+    if (currentPhaseIndex < sunRotations.Count)
+    {
+        sunLight.transform.rotation = Quaternion.Euler(sunRotations[currentPhaseIndex]);
+    }
+
+    if (currentPhaseIndex < sunIntensities.Count)
+    {
+        sunLight.intensity = sunIntensities[currentPhaseIndex];
+    }
+}
+
+
+
+private void OnEnable()
+{
+    SceneManager.sceneLoaded += OnSceneLoaded;
+}
+
+private void OnDisable()
+{
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+}
+
+private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    // Try to find a sun in the new scene
+    if (sunLight == null)
+    {
+        sunLight = FindObjectOfType<Light>();
+        ApplySunSettings();
+    }
+}
+
 }
 
 
