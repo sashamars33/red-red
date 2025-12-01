@@ -1,31 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangerOnCollision : MonoBehaviour
+public class SceneChangerOnCollision : MonoBehaviour, IInteractable
 {
-    [Header("Name of the scene to load on collision")]
+    [Header("Add Loading Scene")]
     public string sceneToLoad;
 
-    [Header("Tag of the object that will trigger the scene change")]
-    public string triggeringTag = "Player";
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(triggeringTag))
-        {
-            LoadScene();
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag(triggeringTag))
-        {
-            LoadScene();
-        }
-    }
-
-    private void LoadScene()
+    public void Interact()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
@@ -33,7 +14,7 @@ public class SceneChangerOnCollision : MonoBehaviour
         }
         else
         {
-            Debug.LogError("SceneChangerOnCollision: No scene name assigned!");
+            Debug.LogError("DoorInteractable: No scene assigned!");
         }
     }
 }
