@@ -8937,7 +8937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &432471030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44952,6 +44952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: HouseInterior
+  blackScreenImage: {fileID: 1163260850}
 --- !u!1 &2116669203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6750341307658325589, guid: f225f00cc0e7a8c42963f5b39e619839, type: 3}

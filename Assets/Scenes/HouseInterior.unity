@@ -2257,6 +2257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: GameScene
+  blackScreenImage: {fileID: 343992936}
 --- !u!114 &1162101741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,6 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: GameScene
+  blackScreenImage: {fileID: 0}
 --- !u!1 &1172022778
 GameObject:
   m_ObjectHideFlags: 0
