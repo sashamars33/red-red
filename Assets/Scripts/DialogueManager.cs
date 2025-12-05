@@ -1,41 +1,57 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    public GameObject dialogPanel;
+    public Image dialogImage;
 
-    private string[] currentLines;
-    private int lineIndex;
-    private string currentSpeaker;
+    private Sprite[] currentSprites;
+    private int index = 0;
+    private System.Action onDialogComplete;
 
-    public void StartDialogue(string speaker, string[] lines)
+        private void Awake()
     {
-        currentSpeaker = speaker;
-        currentLines = lines;
-        lineIndex = 0;
-
-        // Show the UI and display first line
-        DialogueUI.Instance.Show();
-        DialogueUI.Instance.SetSpeaker(speaker);
-        DialogueUI.Instance.SetDialogue(currentLines[lineIndex]);
+        Instance = this;
+        dialogPanel.SetActive(false);
     }
 
-    public void NextLine()
+    private void Update()
     {
-        lineIndex++;
-
-        if (lineIndex >= currentLines.Length)
+        if (dialogPanel.activeSelf && Input.GetMouseButtonDown(0))
         {
-            EndDialogue();
+            Next();
+        }
+    }
+
+    public void StartDialog(Sprite[] sprites, System.Action endCallback = null)
+    {
+        currentSprites = sprites;
+        onDialogComplete = endCallback;
+
+        index = 0;
+        dialogPanel.SetActive(true);
+
+        dialogImage.sprite = currentSprites[index];
+    }
+
+    private void Next()
+    {
+        index++;
+
+        if (index >= currentSprites.Length)
+        {
+            EndDialog();
             return;
         }
 
-        DialogueUI.Instance.SetDialogue(currentLines[lineIndex]);
+        dialogImage.sprite = currentSprites[index];
     }
 
-    private void EndDialogue()
+    private void EndDialog()
     {
-        DialogueUI.Instance.Hide();
-        currentLines = null;
+        dialogPanel.SetActive(false);
+        onDialogComplete?.Invoke();
     }
 }

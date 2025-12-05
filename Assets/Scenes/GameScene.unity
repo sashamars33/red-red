@@ -35011,6 +35011,7 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.2
+  questStarted: 0
   questPhases:
   - phaseName: Beginning
     requiredItems:

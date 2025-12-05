@@ -4,36 +4,30 @@ using UnityEngine;
 public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI Instance;
+    public Sprite[] dialogSpritesGma;
+    public Sprite[] dialogSpritesRRH; 
 
-    public GameObject panel;
-    public TMP_Text speakerNameText;
-    public TMP_Text dialogueText;
 
-    private void Awake()
+     public Sprite[] dialogSprites; // Images with text baked in
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (!other.CompareTag("Player")) return;
 
-        Hide();
+        if (!QuestManager.Instance.questStarted)
+        {
+            DialogueManager.Instance.StartDialog(
+                dialogSprites,
+                () =>
+                {
+                    QuestManager.Instance.StartQuest();
+                }
+            );
+        }
+        else
+        {
+            QuestManager.Instance.CompletePhase();
+        }
     }
 
-    public void Show()
-    {
-        panel.SetActive(true);
-    }
-
-    public void Hide()
-    {
-        panel.SetActive(false);
-    }
-
-    public void SetSpeaker(string name)
-    {
-        speakerNameText.text = name;
-    }
-
-    public void SetDialogue(string line)
-    {
-        dialogueText.text = line;
-    }
 }

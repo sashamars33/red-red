@@ -10,6 +10,8 @@ public class QuestManager : MonoBehaviour
     public List<Vector3> sunRotations;     // One rotation per phase
     public List<float> sunIntensities;
 
+    public bool questStarted = false;
+
 private void Awake()
 {
     if (Instance == null)
@@ -23,6 +25,16 @@ private void Awake()
     }
 }
 
+public void StartQuest()
+    {
+        if (questStarted) return;
+
+        questStarted = true;
+        Debug.Log("Quest started! First phase: " + CurrentPhase().phaseName);
+
+        ApplySunSettings();
+    }
+
     // Quest definition
     [System.Serializable]
     public class QuestPhase
@@ -33,7 +45,7 @@ private void Awake()
 
     public List<QuestPhase> questPhases = new List<QuestPhase>();
 
-    private int currentPhaseIndex = 0;
+    public int currentPhaseIndex = 0;
 
     // Track collected items for the current phase
     private List<string> collectedItems = new List<string>();
@@ -41,6 +53,12 @@ private void Awake()
     // Called when player collects an item
     public void CollectItem(string itemID)
     {
+
+        if (!questStarted)
+        {
+            Debug.Log("You must talk to the NPC to start the quest!");
+            return;
+        }
         // Only add if it's required in the current phase
         if (CurrentPhase().requiredItems.Contains(itemID) && !collectedItems.Contains(itemID))
         {
