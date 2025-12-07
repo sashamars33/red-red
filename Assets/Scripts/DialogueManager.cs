@@ -13,16 +13,26 @@ public class DialogueManager : MonoBehaviour
 
         private void Awake()
     {
-        if (Instance == null)
+         if (Instance == null)
     {
-        Instance = this;           // <--- This is critical
-        DontDestroyOnLoad(gameObject); // optional, if you want it persistent
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // <-- persists across scenes
+    }
+    else
+    {
+        Destroy(gameObject);
     }
 
-    // Make sure the panel is hidden at start
-    if (dialoguePanel != null)
-        dialoguePanel.SetActive(false);
     }
+
+    private void Start()
+{
+    if (QuestManager.Instance == null || DialogueManager.Instance == null)
+    {
+        Debug.LogError("Managers not found!");
+    }
+}
+
 
     private void Update()
     {

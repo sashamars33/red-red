@@ -12,12 +12,22 @@ public class QuestManager : MonoBehaviour
 
     public bool questStarted = false;
 
+    [Header("Dialog Sprites")]
+    public Sprite[] dialogueSpritesPhaseI;
+    public Sprite[] dialogueSpritesPhaseII;
+    public Sprite[] dialogueSpritesPhaseIII;
+
+
 private void Awake()
 {
     if (Instance == null)
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject);  
+        DontDestroyOnLoad(gameObject); // <-- keeps the object alive
+    }
+    else
+    {
+        Destroy(gameObject);
     }
 }
 
@@ -45,6 +55,14 @@ public void StartQuest()
 
     // Track collected items for the current phase
     private List<string> collectedItems = new List<string>();
+    private void Start()
+{
+    if (QuestManager.Instance == null || DialogueManager.Instance == null)
+    {
+        Debug.LogError("Managers not found!");
+    }
+}
+
 
     // Called when player collects an item
     public void CollectItem(string itemID)
@@ -59,8 +77,12 @@ public void StartQuest()
         if (CurrentPhase().requiredItems.Contains(itemID) && !collectedItems.Contains(itemID))
         {
             collectedItems.Add(itemID);
-            Debug.Log(collectedItems);
+            
             Debug.Log($"Collected {itemID} for phase {CurrentPhase().phaseName}");
+            if (HasCollectedAllItems())
+            {
+                Debug.Log("All Items Collected");
+            }
         }
     }
 
@@ -70,7 +92,10 @@ public void StartQuest()
         foreach (string itemID in CurrentPhase().requiredItems)
         {
             Debug.Log(itemID);
-            if (!collectedItems.Contains(itemID)) return false;
+            if (!collectedItems.Contains(itemID)) {
+                Debug.Log("need more items");
+                return false;
+            }
         }
         return true;
     }
@@ -143,6 +168,37 @@ private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         ApplySunSettings();
     }
 }
+
+public void OnNPCInteraction()
+{
+    Sprite[] spritesToUse = null;
+
+    if (!questStarted)
+    {
+        spritesToUse = dialogueSpritesPhaseI;
+        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
+        {
+            StartQuest();
+        });
+    }
+    else if (currentPhaseIndex == 1)
+    {
+        spritesToUse = dialogueSpritesPhaseII;
+        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
+        {
+            CompletePhase();
+        });
+    }
+    else if (currentPhaseIndex == 2)
+    {
+        spritesToUse = dialogueSpritesPhaseIII;
+        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
+        {
+            CompletePhase();
+        });
+    }
+}
+
 
 }
 
