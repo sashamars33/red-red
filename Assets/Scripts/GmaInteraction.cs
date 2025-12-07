@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GmaInteraction : MonoBehaviour, IInteractable
@@ -18,36 +19,24 @@ public class GmaInteraction : MonoBehaviour, IInteractable
 
      public string npcName;
 
-    // public void Interact()
-    // {
-    //     if (!QuestManager.Instance.questStarted)
-    //         {
-    //             Debug.Log("Starting quest...");
-    //             QuestManager.Instance.StartQuest();
-    //             return;  // Stop here so you don't instantly complete the phase
-    //     }
-    //     if (QuestManager.Instance.questStarted)
-    //     {   
-    //         QuestManager.Instance.CompletePhase();
-    //     }
-    // }
 
-     public static DialogueUI Instance;
-    public Sprite[] dialogSpritesPhaseI;
-    public Sprite[] dialogSpritesPhaseII;
-    public Sprite[] dialogSpritesPhaseIII; 
+    public Sprite[] dialogueSpritesPhaseI;
+    public Sprite[] dialogueSpritesPhaseII;
+    public Sprite[] dialogueSpritesPhaseIII; 
 
 
 
     public void Interact()
     {
+        Debug.Log("Interaction GMA", dialogueSpritesPhaseI[0]);
         if (!QuestManager.Instance.questStarted)
         {
-            DialogueManager.Instance.StartDialog(
-                dialogSpritesPhaseI,
+            DialogueManager.Instance.StartDialogue(
+                dialogueSpritesPhaseI,
                 () =>
                 {
                     QuestManager.Instance.StartQuest();
+                    Debug.Log("Quest Started", dialogueSpritesPhaseI[0]);
                 }
             );
         }
@@ -55,17 +44,17 @@ public class GmaInteraction : MonoBehaviour, IInteractable
         {
             if(QuestManager.Instance.currentPhaseIndex == 1)
             {
-                DialogueManager.Instance.StartDialog(
-                dialogSpritesPhaseII,
+                DialogueManager.Instance.StartDialogue(
+                dialogueSpritesPhaseII,
                 () =>
                 {
                     QuestManager.Instance.CompletePhase();
                 }
             );
-            }else if(QuestManager.Instance.currentPhaseIndex == 1)
+            }else if(QuestManager.Instance.currentPhaseIndex == 2)
             {
-                 DialogueManager.Instance.StartDialog(
-                dialogSpritesPhaseIII,
+                 DialogueManager.Instance.StartDialogue(
+                dialogueSpritesPhaseIII,
                 () =>
                 {
                     QuestManager.Instance.CompletePhase();

@@ -16,7 +16,7 @@ public class DialogueUI : MonoBehaviour
 
         if (!QuestManager.Instance.questStarted)
         {
-            DialogueManager.Instance.StartDialog(
+            DialogueManager.Instance.StartDialogue(
                 dialogSprites,
                 () =>
                 {

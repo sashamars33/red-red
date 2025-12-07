@@ -19,10 +19,6 @@ private void Awake()
         Instance = this;
         DontDestroyOnLoad(gameObject);  
     }
-    else
-    {
-        Destroy(gameObject);
-    }
 }
 
 public void StartQuest()

@@ -4,36 +4,46 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-    public GameObject dialogPanel;
-    public Image dialogImage;
+    public GameObject dialoguePanel;
+    public Image dialogueImage;
 
     private Sprite[] currentSprites;
     private int index = 0;
-    private System.Action onDialogComplete;
+    private System.Action onDialogueComplete;
 
         private void Awake()
     {
-        Instance = this;
-        dialogPanel.SetActive(false);
+        if (Instance == null)
+    {
+        Instance = this;           // <--- This is critical
+        DontDestroyOnLoad(gameObject); // optional, if you want it persistent
+    }
+
+    // Make sure the panel is hidden at start
+    if (dialoguePanel != null)
+        dialoguePanel.SetActive(false);
     }
 
     private void Update()
     {
-        if (dialogPanel.activeSelf && Input.GetMouseButtonDown(0))
+        if (dialoguePanel.activeSelf && Input.GetMouseButtonDown(0))
         {
             Next();
+            Debug.Log("Next..");
         }
     }
 
-    public void StartDialog(Sprite[] sprites, System.Action endCallback = null)
+    public void StartDialogue(Sprite[] sprites, System.Action endCallback = null)
     {
+        
         currentSprites = sprites;
-        onDialogComplete = endCallback;
+        onDialogueComplete = endCallback;
 
         index = 0;
-        dialogPanel.SetActive(true);
+        dialoguePanel.SetActive(true);
 
-        dialogImage.sprite = currentSprites[index];
+        dialogueImage.sprite = currentSprites[index];
+        Debug.Log("Dialogue Started", sprites[0]);
     }
 
     private void Next()
@@ -42,16 +52,17 @@ public class DialogueManager : MonoBehaviour
 
         if (index >= currentSprites.Length)
         {
-            EndDialog();
+            EndDialogue();
             return;
         }
 
-        dialogImage.sprite = currentSprites[index];
+        dialogueImage.sprite = currentSprites[index];
     }
 
-    private void EndDialog()
+    private void EndDialogue()
     {
-        dialogPanel.SetActive(false);
-        onDialogComplete?.Invoke();
+        dialoguePanel.SetActive(false);
+        onDialogueComplete?.Invoke();
+        Debug.Log("Dialogue Ended");
     }
 }
