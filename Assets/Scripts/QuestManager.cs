@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
     public TMP_Text CollectionText;       
-    public GameObject gameOverScreen;     // Assign your Directional Light
+    public GameObject gameOverScreen; 
+    public Image blackScreenImage;     // Assign your Directional Light
     
     public bool questStarted = false;
 
@@ -171,6 +175,47 @@ public void OnNPCInteraction()
         gameOverScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Exit Game to Main Menu");
+        StartCoroutine(SceneLoadTimer(0));
+        gameOverScreen.SetActive(false);
+        blackScreenImage.gameObject.SetActive(false);
+    }
+    public void StartGame()
+    {
+        Debug.Log("Start Game");
+        StartCoroutine(SceneLoadTimer(1));
+        gameOverScreen.SetActive(false);
+        blackScreenImage.gameObject.SetActive(false);
+    }
+
+    public void CloseApplication()
+    {
+        Debug.Log("Close Application");
+        Application.Quit();
+    }
+
+    IEnumerator SceneLoadTimer(int scene)
+    {
+        float timer = 0f;
+        float duration = 0.5f;
+
+        while(timer < duration)
+        {
+            timer += Time.unscaledDeltaTime;
+            float lerp = timer / duration;
+
+            blackScreenImage.color = Color.Lerp(Color.clear, Color.black, lerp);
+
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(0.8f);
+
+        SceneManager.LoadScene(scene);
     }
 
 }

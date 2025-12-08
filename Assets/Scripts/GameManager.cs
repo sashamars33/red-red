@@ -34,20 +34,11 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exit Game to Main Menu");
-        if(GameOverScreen != null)
-        {
-            GameOverScreen.SetActive(false);
-        }
         StartCoroutine(SceneLoadTimer(0));
-    
     }
     public void StartGame()
     {
         Debug.Log("Start Game");
-        if(GameOverScreen != null)
-        {
-            GameOverScreen.SetActive(false);
-        }
         StartCoroutine(SceneLoadTimer(1));
     }
 

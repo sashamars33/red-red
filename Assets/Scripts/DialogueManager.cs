@@ -6,6 +6,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     public GameObject dialoguePanel;
     public Image dialogueImage;
+    public Image blackScreenImage; 
 
     private Sprite[] currentSprites;
     private int index = 0;
@@ -13,6 +14,7 @@ public class DialogueManager : MonoBehaviour
 
         private void Awake()
     {
+        
          if (Instance == null)
     {
         Instance = this;
