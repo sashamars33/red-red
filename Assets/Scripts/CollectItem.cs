@@ -7,7 +7,7 @@ public class CollectItem : MonoBehaviour
 {
     // Camomile, Poppy, Angelica, Coriander, Red Cap Mushroom, Blue drippy mushroom, newt, bat
     private int collectibleCount;
-    public TMP_Text countText;
+    // public TMP_Text countText;
 
     public int winCount;
     public GameObject winScreen;
@@ -16,7 +16,7 @@ public class CollectItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        countText.text = "";
+        // countText.text = "";
         if (winScreen != null)
             winScreen.SetActive(false);
     }
@@ -35,7 +35,7 @@ public class CollectItem : MonoBehaviour
             // collectibleCount++;
             if (prefabID != null)
             {
-                countText.text = countText.text  + prefabID.ID + "\n";
+                // countText.text = countText.text  + prefabID.ID + "\n";
                 QuestManager.Instance.CollectItem(prefabID.ID);
             }
             

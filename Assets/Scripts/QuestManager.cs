@@ -2,19 +2,38 @@ using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections.ObjectModel;
 
 public class QuestManager : MonoBehaviour
 {
-    public static QuestManager Instance;       
+    public static QuestManager Instance;
+    public TMP_Text CollectionText;       
     public GameObject gameOverScreen;     // Assign your Directional Light
-
+    
     public bool questStarted = false;
 
     [Header("Dialog Sprites")]
     public Sprite[] dialogueSpritesPhaseI;
     public Sprite[] dialogueSpritesPhaseII;
     public Sprite[] dialogueSpritesPhaseIII;
+
+     // Quest definition
+    [System.Serializable]
+    public class QuestPhase
+    {
+        public string phaseName;
+        public List<string> requiredItems; // list of item IDs for this phase
+    }
+
+    public List<QuestPhase> questPhases = new List<QuestPhase>();
+
+    public int currentPhaseIndex = 0;
+
+    // Track collected items for the current phase
+    private List<string> collectedItems = new List<string>();
+
     
 
 
@@ -36,28 +55,14 @@ public void StartQuest()
         if (questStarted) return;
 
         questStarted = true;
-        Debug.Log("Quest started! First phase: " + CurrentPhase().phaseName);
+        CollectionText.text = "";
     }
 
-    // Quest definition
-    [System.Serializable]
-    public class QuestPhase
-    {
-        public string phaseName;
-        public List<string> requiredItems; // list of item IDs for this phase
-    }
-
-    public List<QuestPhase> questPhases = new List<QuestPhase>();
-
-    public int currentPhaseIndex = 0;
-
-    // Track collected items for the current phase
-    private List<string> collectedItems = new List<string>();
-    private void Start()
+       private void Start()
 {
     if (QuestManager.Instance == null || DialogueManager.Instance == null)
     {
-        Debug.LogError("Managers not found!");
+        CollectionText.text = "Managers not found!";
     }
 }
 
@@ -69,17 +74,20 @@ public void StartQuest()
         if (!questStarted)
         {
             Debug.Log("You must talk to the NPC to start the quest!");
+            CollectionText.text = "Gammy has a Quest for you! Head home and talk to her ASAP..";
             return;
         }
         // Only add if it's required in the current phase
         if (CurrentPhase().requiredItems.Contains(itemID) && !collectedItems.Contains(itemID))
         {
+            
             collectedItems.Add(itemID);
+            CollectionText.text = CollectionText.text + itemID + "\n";
             
             Debug.Log($"Collected {itemID} for phase {CurrentPhase().phaseName}");
             if (HasCollectedAllItems())
             {
-                Debug.Log("All Items Collected");
+               CollectionText.text = "All Items Collected!" + "\n" + "Go talk to Gammy.."; 
             }
         }
     }
@@ -109,16 +117,18 @@ public void StartQuest()
 
             if (currentPhaseIndex >= questPhases.Count)
             {
+                CollectionText.text = "";
                 Debug.Log("Quest completed!");
             }
             else
             {
+                CollectionText.text = "";
                 Debug.Log($"Next phase started: {CurrentPhase().phaseName}");
             }
         }
         else
         {
-            Debug.Log("You haven't collected all required items yet!");
+            CollectionText.text = "You haven't collected all required items yet!";
         }
     }
 
