@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class QuestManager : MonoBehaviour
     public Sprite[] dialogueSpritesPhaseI;
     public Sprite[] dialogueSpritesPhaseII;
     public Sprite[] dialogueSpritesPhaseIII;
+    public GameObject gameOverScreen;
 
 
 private void Awake()
@@ -194,9 +196,16 @@ public void OnNPCInteraction()
     else
     {
         Debug.Log($"OnNPCInteraction: No dialogue defined for currentPhaseIndex = {currentPhaseIndex}");
+        Die();
     }
 }
-
+ public void Die()
+    {
+        Time.timeScale = 0;
+        gameOverScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
 
 }
 
