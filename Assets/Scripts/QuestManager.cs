@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
-    public static QuestManager Instance;
-    public Light sunLight;                 // Assign your Directional Light
-    public List<Vector3> sunRotations;     // One rotation per phase
-    public List<float> sunIntensities;
+    public static QuestManager Instance;       
+    public GameObject gameOverScreen;     // Assign your Directional Light
 
     public bool questStarted = false;
 
@@ -17,7 +15,7 @@ public class QuestManager : MonoBehaviour
     public Sprite[] dialogueSpritesPhaseI;
     public Sprite[] dialogueSpritesPhaseII;
     public Sprite[] dialogueSpritesPhaseIII;
-    public GameObject gameOverScreen;
+    
 
 
 private void Awake()
@@ -39,8 +37,6 @@ public void StartQuest()
 
         questStarted = true;
         Debug.Log("Quest started! First phase: " + CurrentPhase().phaseName);
-
-        ApplySunSettings();
     }
 
     // Quest definition
@@ -111,8 +107,6 @@ public void StartQuest()
             collectedItems.Clear(); // reset for next phase
             currentPhaseIndex++;
 
-            ApplySunSettings();
-
             if (currentPhaseIndex >= questPhases.Count)
             {
                 Debug.Log("Quest completed!");
@@ -134,42 +128,7 @@ public void StartQuest()
             return questPhases[currentPhaseIndex];
         return null;
     }
-    private void ApplySunSettings()
-{
-    if (sunLight == null) return;
 
-    if (currentPhaseIndex < sunRotations.Count)
-    {
-        sunLight.transform.rotation = Quaternion.Euler(sunRotations[currentPhaseIndex]);
-    }
-
-    if (currentPhaseIndex < sunIntensities.Count)
-    {
-        sunLight.intensity = sunIntensities[currentPhaseIndex];
-    }
-}
-
-
-
-private void OnEnable()
-{
-    SceneManager.sceneLoaded += OnSceneLoaded;
-}
-
-private void OnDisable()
-{
-    SceneManager.sceneLoaded -= OnSceneLoaded;
-}
-
-private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-{
-    // Try to find a sun in the new scene
-    if (sunLight == null)
-    {
-        sunLight = FindObjectOfType<Light>();
-        ApplySunSettings();
-    }
-}
 
 public void OnNPCInteraction()
 {
