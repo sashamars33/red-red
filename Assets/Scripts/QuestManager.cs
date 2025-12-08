@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using System.Collections.ObjectModel;
 
 public class QuestManager : MonoBehaviour
 {
