@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     // UI Elements
     public Image blackScreenImage; 
-    
+    public GameObject GameOverScreen;
     // Counts
     private int collectibleCount;
 
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         blackScreenImage.color = Color.clear;
+        
     }
 
     // Update is called once per frame
@@ -33,11 +34,20 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exit Game to Main Menu");
+        if(GameOverScreen != null)
+        {
+            GameOverScreen.SetActive(false);
+        }
         StartCoroutine(SceneLoadTimer(0));
+    
     }
     public void StartGame()
     {
         Debug.Log("Start Game");
+        if(GameOverScreen != null)
+        {
+            GameOverScreen.SetActive(false);
+        }
         StartCoroutine(SceneLoadTimer(1));
     }
 
