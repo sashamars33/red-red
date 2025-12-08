@@ -1157,6 +1157,26 @@ PrefabInstance:
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_Pitch
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_Volume
+      value: 0.645
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f2e8aa9a4dd4a942b9102cb16b0e2e8, type: 3}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5246620093966261823, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.23
