@@ -3941,6 +3941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 6469540801020132758, guid: 9362750fd5819de4cb3720c5d5f570d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7570,6 +7574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Cap
       objectReference: {fileID: 0}
+    - target: {fileID: 8073106688721992624, guid: fc0b6e6cd4d5bc7409b3d95289f32437, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8881871894390432010, guid: fc0b6e6cd4d5bc7409b3d95289f32437, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4186907
@@ -9578,6 +9586,10 @@ PrefabInstance:
     - target: {fileID: 4805401825269428760, guid: dd62d5a713f4e09488c7cb2ab6bed296, type: 3}
       propertyPath: m_Name
       value: Inky Cap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805401825269428760, guid: dd62d5a713f4e09488c7cb2ab6bed296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5331109479033530530, guid: dd62d5a713f4e09488c7cb2ab6bed296, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11685,6 +11697,10 @@ PrefabInstance:
     - target: {fileID: 703975162895701645, guid: cf2080dfc75fbc441b734bdbaa80cd3f, type: 3}
       propertyPath: m_Name
       value: Camomile
+      objectReference: {fileID: 0}
+    - target: {fileID: 703975162895701645, guid: cf2080dfc75fbc441b734bdbaa80cd3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21206,6 +21222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corriander
       objectReference: {fileID: 0}
+    - target: {fileID: 3715382171323906804, guid: 476b174c4eaf11c4994e462eb139787b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4090500785549664334, guid: 476b174c4eaf11c4994e462eb139787b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.1840072
@@ -21262,6 +21282,10 @@ PrefabInstance:
     - target: {fileID: 8481756377848494497, guid: 10b8a5cb246293a44ba17691b811aca8, type: 3}
       propertyPath: m_Name
       value: Spood
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481756377848494497, guid: 10b8a5cb246293a44ba17691b811aca8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9150910717495370523, guid: 10b8a5cb246293a44ba17691b811aca8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30612,6 +30636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Devil_s Bolete
       objectReference: {fileID: 0}
+    - target: {fileID: 4587891082655077143, guid: c853e9d50c14195438ace526909f6c69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39559,6 +39587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Morchella
       objectReference: {fileID: 0}
+    - target: {fileID: 8129078669856132580, guid: d91be34e7ca3301439aa7d1bee71d594, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8906881289568294750, guid: d91be34e7ca3301439aa7d1bee71d594, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.769592
@@ -40189,6 +40221,10 @@ PrefabInstance:
     - target: {fileID: 4092918791019449810, guid: 2915112f8a2029d45ac616e562b5bda2, type: 3}
       propertyPath: m_Name
       value: Angelica
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092918791019449810, guid: 2915112f8a2029d45ac616e562b5bda2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45886,6 +45922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poppy
       objectReference: {fileID: 0}
+    - target: {fileID: 1870664842070487747, guid: 2c2e5df89f885b54bb263ebfb1e0c01a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46836,6 +46876,10 @@ PrefabInstance:
     - target: {fileID: 8241223736223453005, guid: d605157510442c34d951b2098c6da48d, type: 3}
       propertyPath: m_Name
       value: Newt
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241223736223453005, guid: d605157510442c34d951b2098c6da48d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8724992001586337271, guid: d605157510442c34d951b2098c6da48d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49740,6 +49784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 1873030861159501008, guid: e73e1e12318e09141a8baf34e1e5706c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50382,6 +50430,22 @@ PrefabInstance:
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 1776989874}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_Volume
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f2e8aa9a4dd4a942b9102cb16b0e2e8, type: 3}
+    - target: {fileID: 1346389499969526520, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5246620093966261823, guid: 9deaa32ac197498409e34e9e570f647e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.4389153
