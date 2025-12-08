@@ -38,6 +38,7 @@ public class PlayerInteract : MonoBehaviour
 
             if (interactObj != null)
             {
+                Debug.Log(interactObj);
                 interactText.text = "E";
             }
             else

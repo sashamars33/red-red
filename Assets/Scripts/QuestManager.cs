@@ -171,31 +171,29 @@ private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 
 public void OnNPCInteraction()
 {
-    Sprite[] spritesToUse = null;
+   Sprite[] spritesToUse = null;
 
     if (!questStarted)
     {
+        // Intro dialogue before the quest actually starts
         spritesToUse = dialogueSpritesPhaseI;
-        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
-        {
-            StartQuest();
-        });
+        DialogueManager.Instance.StartDialogue(spritesToUse, StartQuest);
+    }
+    else if (currentPhaseIndex == 0)
+    {
+        // First real phase turn-in
+        spritesToUse = dialogueSpritesPhaseII;
+        DialogueManager.Instance.StartDialogue(spritesToUse, CompletePhase);
     }
     else if (currentPhaseIndex == 1)
     {
-        spritesToUse = dialogueSpritesPhaseII;
-        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
-        {
-            CompletePhase();
-        });
-    }
-    else if (currentPhaseIndex == 2)
-    {
+        // Second phase turn-in
         spritesToUse = dialogueSpritesPhaseIII;
-        DialogueManager.Instance.StartDialogue(spritesToUse, () =>
-        {
-            CompletePhase();
-        });
+        DialogueManager.Instance.StartDialogue(spritesToUse, CompletePhase);
+    }
+    else
+    {
+        Debug.Log($"OnNPCInteraction: No dialogue defined for currentPhaseIndex = {currentPhaseIndex}");
     }
 }
 
